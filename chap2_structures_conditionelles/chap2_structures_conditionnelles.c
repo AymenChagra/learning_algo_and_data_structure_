@@ -1,58 +1,51 @@
-//Chap2: les structures conditionnels
-
+//Chap2: les structures conditionnelles
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-//*******************Chap2-Testing (conditions) *******************
-//Exemple1
-
-/*int main(){
+//Exemple de structure conditionnelle:
+//si le nombre des imprimantes acheté est inférieur à 5
+//alors le prix unitaire des imprimantes est 120, si le nombre des imprimantes acheté
+//est supérieur à 5 alors le prix unitaire est 85DTt
+/*
+int main(){
     int nbImp;
     float prixTotal;
-    printf("Donner le nombres des imp\n");
+    printf("Donner le nombre des imp\n");
     scanf("%d",&nbImp);
     if (nbImp<5){
         prixTotal=nbImp*120;
-        printf("prixTotal=%f",prixTotal);
+        printf("prixTotal=%.2f\n",prixTotal);
     }else{
     prixTotal=nbImp*85;
-    printf("prixTotal=%f",prixTotal);
+    printf("prixTotal=%.2f\n",prixTotal);
     }
+    return 0;
 }
 */
 
-//***chapitre2 serie*************************
+//***************chapitre2 serie2*************************
 //Exercice 1
-/*Ecrire un programme en langage C qui demande � l�utilisateur d'entrer la moyenne d'un �l�ve.
-Le programme permet d'afficher la mention obtenue.
-moyenne en dessous de 10 : redouble
-moyenne entre 10 (inclus) et 12 : passable
-moyenne entre 12 (inclus) et 14 : Assez Bien
-moyenne entre 14 (inclus) et 16: Bien
-moyenne sup�rieure � 16 : Tr�s Bien*/
-
 /*
 int main(){
     float moy;
     printf("entrer la moyenne\n");
     scanf("%f",&moy);
-    if ((moy>0 || moy<20)){
+    if (moy>0 && moy<20){  //condition utilsé pour le controle des entrés
         if (moy<10){
         printf ("redouble \n");
-    } else if (moy>= 10 && moy<12){
+        } else if (moy>= 10 && moy<12){
         printf("assez bien\n");
-    } else if ((moy>= 12) && (moy<14)){
+        } else if ((moy>= 12) && (moy<14)){
         printf("assez bien\n");
-    } else if ((moy>= 14) && (moy<16)){
+        } else if ((moy>= 14) && (moy<16)){
         printf("bien\n");
-    } else if ((moy>= 16) && (moy<=20)){
+        } else if ((moy>= 16) && (moy<=20)){
         printf("Tres bien\n");
-    }
         }
-     else {
-        printf("erreur!!");
+    }else {
+    printf("erreur!!");
     }
     return 0;
 }
@@ -66,7 +59,7 @@ int main(){
     printf("entrer deux valeurs\n");
     scanf("%d",&a);
     scanf("%d",&b);
-    fflush(stdin); // pour regler le problem du tempon
+    fflush(stdin); // pour regler le probleme du tampon
     printf("entrer l'operateur\n");
     scanf("%c",&op);
     switch(op){
@@ -97,38 +90,44 @@ int main(){
 */
 
 
-// Exercice 5
+// Exercice 5 partie 1 (with if statement)
 /*
 int main(){
-    float total;
-    printf("entrer le montant \n");
-    scanf("%f",&total);
-    if(total<=20){
-        printf ("le montant a paye est %f",total);
-    }else if(total>20 && total<=100){
-        printf ("le montant a paye est %f",total-total*0.05);
-    }else if(total>100 && total<=200){
-        printf ("le montant a paye est %.3f",total-total*0.1);
-    }else if (total>200){
-        printf ("le montant a paye est %.3f",total-total*0.15);
-    } else {
-        printf("erreur!");
-    }
-    return 0;
+    float solde;
+    printf("entrer le solde \n");
+    scanf("%f",&solde);
+    if (solde>0){
+        if(solde<=20){
+        printf ("le montant a paye est %.3f \n",solde);
+        }else if(solde>20 && solde<=100){
+        printf ("le montant a paye est %.3f \n",solde-solde*0.05);
+        }else if(solde>100 && solde<=200){
+        printf ("le montant a paye est %.3f\n",solde-solde*0.1);
+        }else{
+            printf ("le montant a paye est %.3f\n",solde-solde*0.15);
+        }
+        }else {
+            printf("erreur!\n");
+        }
+    return main();   // main est effectué à return pour essayer le code plusiers fois en console
 }
 */
-//avec switch
 
-/* !!!!!!!!!!!!!!!!!!!!!!
+// Exercice 5 partie 1 (with switch)
+
+/*
 int main(){
-    switch ((int)solde){
+    float solde,remise,montant;
+    printf("entrer le solde \n");
+    scanf("%f",&solde);
+    switch ((int)solde){  //Note: le switch n'accepte pas le type float comme paramétre
     case 0 ...20:
     remise=0;
     break;
     case 21 ...100:
     remise=0.05;
     break;
-    case 101 ..200;
+    case 101 ...200:
     remise=0.10;
     break;
     default:
@@ -137,8 +136,11 @@ int main(){
     montant=solde-(solde*remise);
     printf("montant=%.3f",montant);
     return 0;
-}*/
+}
+*/
 
+
+//Exercice 6:
 int main(){
     int a,cent,diz,unite,som;
     printf("Entrer un entier compris entre 100 et 999 \n");
@@ -149,12 +151,13 @@ int main(){
         unite=(a%100)%10;
         som=cent+diz+unite;
         if (som%2==0){
-            printf("som*som=%d\n",som*som);
+            printf("som*som=%d\n",(int)pow(som,2)); // the pow fct returns a double so we need to cast it with (int)
         }else{
-            printf("racine carre de som=%f",(float)sqrt(som));
+            printf("racine carre de som=%.3f\n",(float)sqrt(som));
         }}
     else {
         printf("Error\n");
         }
     return 0;
 }
+
